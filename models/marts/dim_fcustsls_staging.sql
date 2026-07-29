@@ -1,13 +1,13 @@
 {{ config(
     materialized='incremental',
-    schema='starscm_m1_airbyte',
+    schema='starscm_m1',
     tags=['fcustsls_staging'],
     pre_hook=[
         "{% if is_incremental() %} delete from {{ this }} where (tahun, periode) in (select distinct tahun, periode from {{ source('raw_ficom', 'v_fcustsls_staging_last_2_period') }}) {% endif %}"
     ],
     post_hook=[
-        "{% if not is_incremental() %} alter table if exists starscm_m1_airbyte.dim_fcustsls_staging__dbt_backup drop constraint if exists pk_fcustsls_n {% else %} select 1 {% endif %}",
-        "{% if not is_incremental() %} drop index if exists starscm_m1_airbyte.idx_dim_fcustsls_staging_tahun_periode {% else %} select 1 {% endif %}",
+        "{% if not is_incremental() %} alter table if exists starscm_m1.dim_fcustsls_staging__dbt_backup drop constraint if exists pk_fcustsls_n {% else %} select 1 {% endif %}",
+        "{% if not is_incremental() %} drop index if exists starscm_m1.idx_dim_fcustsls_staging_tahun_periode {% else %} select 1 {% endif %}",
         "{% if not is_incremental() %} alter table {{ this }} add constraint pk_fcustsls_n primary key (distributor_id, cust_id, sls_id, periode, tahun) {% else %} select 1 {% endif %}",
         "{% if not is_incremental() %} create index if not exists idx_dim_fcustsls_staging_tahun_periode on {{ this }} (tahun, periode) {% else %} select 1 {% endif %}"
     ]

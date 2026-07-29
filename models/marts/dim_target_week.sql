@@ -1,9 +1,9 @@
 {{ config(
     materialized='table',
-    schema='starscm_m1_airbyte',
+    schema='starscm_m1',
     tags=['main-dim'],
     post_hook=[
-        "alter table if exists starscm_m1_airbyte.dim_target_week__dbt_backup drop constraint if exists dim_target_week_pkey",
+        "alter table if exists starscm_m1.dim_target_week__dbt_backup drop constraint if exists dim_target_week_pkey",
         "alter table {{ this }} add constraint dim_target_week_pkey primary key (distributor_id, distributor_id_mtx, tahun, week, pcode)"
     ]
 ) }}

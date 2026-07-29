@@ -1,6 +1,6 @@
 {{ config(
     materialized='incremental',
-    schema='starscm_m1_airbyte',
+    schema='starscm_m1',
     tags=['main-dim'],
     pre_hook=["delete from {{ this }}"]
 ) }}

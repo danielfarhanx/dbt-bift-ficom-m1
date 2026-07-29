@@ -1,9 +1,9 @@
 {{ config(
     materialized='table',
-    schema='starscm_m1_airbyte',
+    schema='starscm_m1',
     tags=['pemerintahan'],
     post_hook=[
-        "alter table if exists starscm_m1_airbyte.dim_pemerintahan__dbt_backup drop constraint if exists dim_pemerintahan_pkey1",
+        "alter table if exists starscm_m1.dim_pemerintahan__dbt_backup drop constraint if exists dim_pemerintahan_pkey1",
         "alter table {{ this }} add constraint dim_pemerintahan_pkey1 primary key (subdist_id, custno)"
     ]
 ) }}

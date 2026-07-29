@@ -2,7 +2,7 @@
 {%- if execute -%}
   {%- set check_query -%}
     select count(*) from information_schema.tables 
-    where table_schema = 'starscm_m1_airbyte' and table_name = 'dim_fcustsls_staging'
+    where table_schema = 'starscm_m1' and table_name = 'dim_fcustsls_staging'
   {%- endset -%}
   {%- set results = run_query(check_query) -%}
   {%- if results and results.rows[0][0] > 0 -%}

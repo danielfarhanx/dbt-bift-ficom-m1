@@ -1,10 +1,10 @@
 {{ config(
     materialized='incremental',
-    schema='starscm_m1_airbyte',
+    schema='starscm_m1',
     tags=['main-dim'],
     pre_hook=["delete from {{ this }}"],
     post_hook=[
-        "{% if not is_incremental() %} alter table if exists starscm_m1_airbyte.dim_emp_mkt_sales__dbt_backup drop constraint if exists dim_emp_mkt_sales_pkey {% else %} select 1 {% endif %}",
+        "{% if not is_incremental() %} alter table if exists starscm_m1.dim_emp_mkt_sales__dbt_backup drop constraint if exists dim_emp_mkt_sales_pkey {% else %} select 1 {% endif %}",
         "{% if not is_incremental() %} alter table {{ this }} add constraint dim_emp_mkt_sales_pkey primary key (m_id, m_id_map_sales) {% else %} select 1 {% endif %}"
     ]
 ) }}

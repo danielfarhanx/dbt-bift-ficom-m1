@@ -1,10 +1,10 @@
 {{ config(
     materialized='incremental',
-    schema='starscm_m1_airbyte',
+    schema='starscm_m1',
     tags=['main-dim'],
     pre_hook=["delete from {{ this }}"],
     post_hook=[
-        "{% if not is_incremental() %} alter table if exists starscm_m1_airbyte.dim_product_snopix__dbt_backup drop constraint if exists pk_dim_product_snopix {% else %} select 1 {% endif %}",
+        "{% if not is_incremental() %} alter table if exists starscm_m1.dim_product_snopix__dbt_backup drop constraint if exists pk_dim_product_snopix {% else %} select 1 {% endif %}",
         "{% if not is_incremental() %} alter table {{ this }} add constraint pk_dim_product_snopix primary key (pcode) {% else %} select 1 {% endif %}"
     ]
 ) }}
