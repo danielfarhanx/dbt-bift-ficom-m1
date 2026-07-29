@@ -1,0 +1,500 @@
+version: 2
+
+models:
+  - name: dim_distributor
+    description: "Dimension table for distributors mapped from Airbyte raw data."
+    columns:
+      - name: distributor_id
+        description: "Primary key of the distributor."
+        data_tests:
+          - unique
+          - not_null
+      - name: distributor_nm
+        description: "Name of the distributor."
+      - name: sbd_city
+        description: "City of the distributor."
+      - name: region_id
+        description: "Region ID."
+      - name: slsdiv_id
+        description: "Sales division ID."
+
+  - name: dim_distributor_upd_date
+    description: "Dimension table mapping distributors to their update dates."
+    columns:
+      - name: distributor_id
+        description: "Primary key of the distributor update date."
+        data_tests:
+          - unique
+          - not_null
+      - name: upd_date
+        description: "Last update timestamp."
+
+  - name: dim_div
+    description: "Dimension table for division master data."
+    columns:
+      - name: div_id
+        description: "Primary key of the division."
+        data_tests:
+          - unique
+          - not_null
+      - name: div_nm
+        description: "Name of the division."
+
+  - name: dim_emp_class_team
+    description: "Dimension table mapping employees to class teams."
+    columns:
+      - name: m_id
+        description: "Part of composite primary key. Employee manager/member ID."
+        data_tests:
+          - not_null
+      - name: class_team_id
+        description: "Part of composite primary key. Class team identifier."
+        data_tests:
+          - not_null
+
+  - name: dim_employe_help
+    description: "Dimension helper table mapping employees, distributors, and divisions."
+    columns:
+      - name: emp_id
+        description: "Part of composite primary key. Employee identifier."
+        data_tests:
+          - not_null
+      - name: distributor_id
+        description: "Part of composite primary key. Distributor identifier."
+        data_tests:
+          - not_null
+      - name: div_id
+        description: "Part of composite primary key. Division identifier."
+        data_tests:
+          - not_null
+      - name: div_nm
+        description: "Name of division."
+      - name: user_nm
+        description: "User name."
+      - name: jabatan
+        description: "Job title/position."
+      - name: emp_type_id
+        description: "Employee type identifier."
+
+  - name: dim_emp_mkt_sales
+    description: "Dimension table mapping market employees to sales employees."
+    columns:
+      - name: m_id
+        description: "Part of composite primary key. Marketing employee ID."
+        data_tests:
+          - not_null
+      - name: m_id_map_sales
+        description: "Part of composite primary key. Sales employee ID mapping."
+        data_tests:
+          - not_null
+
+  - name: dim_salesman_spv
+    description: "Dimension table mapping salesmen to supervisor IDs."
+    columns:
+      - name: distributor_id
+        description: "Part of composite primary key. Distributor ID."
+        data_tests:
+          - not_null
+      - name: spv_id
+        description: "Part of composite primary key. Supervisor ID."
+        data_tests:
+          - not_null
+      - name: sls_id
+        description: "Part of composite primary key. Salesman ID."
+        data_tests:
+          - not_null
+      - name: upd_date
+        description: "Last update timestamp."
+
+  - name: dim_employe
+    description: "Dimension table for employee master data."
+    columns:
+      - name: emp_id
+        description: "Primary key of the employee."
+        data_tests:
+          - unique
+          - not_null
+      - name: emp_nm
+        description: "Name of the employee."
+      - name: emp_type_id
+        description: "Employee type identifier."
+      - name: superior_id
+        description: "Superior/Manager employee ID."
+      - name: email
+        description: "Email address."
+      - name: user_id
+        description: "Associated user login account ID."
+      - name: upd_date
+        description: "Last update date string."
+      - name: is_terminate
+        description: "Flag indicating termination status."
+      - name: terminate_date
+        description: "Termination timestamp."
+      - name: nik
+        description: "NIK (National Identity Number)."
+      - name: full_name
+        description: "Full name."
+
+  - name: dim_provinsi
+    description: "Dimension table for provinsi master data."
+    columns:
+      - name: t11
+        description: "Primary key. Provinsi ID."
+        data_tests:
+          - unique
+          - not_null
+      - name: ket
+        description: "Description or name of provinsi."
+
+  - name: dim_kabupaten
+    description: "Dimension table for kabupaten master data."
+    columns:
+      - name: t11
+        description: "Part of composite primary key. Provinsi ID."
+        data_tests:
+          - not_null
+      - name: t12
+        description: "Part of composite primary key. Kabupaten ID."
+        data_tests:
+          - not_null
+      - name: ket
+        description: "Description or name of kabupaten."
+
+  - name: dim_kecamatan
+    description: "Dimension table for kecamatan master data."
+    columns:
+      - name: t11
+        description: "Part of composite primary key. Provinsi ID."
+        data_tests:
+          - not_null
+      - name: t12
+        description: "Part of composite primary key. Kabupaten ID."
+        data_tests:
+          - not_null
+      - name: t13
+        description: "Part of composite primary key. Kecamatan ID."
+        data_tests:
+          - not_null
+      - name: ket
+        description: "Description or name of kecamatan."
+
+  - name: dim_kelurahan
+    description: "Dimension table for kelurahan master data."
+    columns:
+      - name: t11
+        description: "Part of composite primary key. Provinsi ID."
+        data_tests:
+          - not_null
+      - name: t12
+        description: "Part of composite primary key. Kabupaten ID."
+        data_tests:
+          - not_null
+      - name: t13
+        description: "Part of composite primary key. Kecamatan ID."
+        data_tests:
+          - not_null
+      - name: t14
+        description: "Part of composite primary key. Kelurahan ID."
+        data_tests:
+          - not_null
+      - name: ket
+        description: "Description or name of kelurahan."
+
+  - name: dim_product_pack
+    description: "Dimension table for product pack master data."
+    columns:
+      - name: pcode
+        description: "Primary key of the product pack."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_region
+    description: "Dimension table for region data."
+    columns:
+      - name: region_id
+        description: "Region ID."
+      - name: region_nm
+        description: "Region name."
+
+  - name: dim_pemerintahan
+    description: "Dimension table for customer location/pemerintahan data."
+    columns:
+      - name: subdist_id
+        description: "Part of composite primary key. Subdist ID."
+        data_tests:
+          - not_null
+      - name: custno
+        description: "Part of composite primary key. Customer number."
+        data_tests:
+          - not_null
+      - name: custname
+        description: "Customer name."
+      - name: custadd1
+        description: "Customer address."
+      - name: prop_id
+        description: "Provinsi ID."
+      - name: prop_name
+        description: "Provinsi Name."
+      - name: kab_id
+        description: "Kabupaten ID."
+      - name: kab_name
+        description: "Kabupaten Name."
+      - name: kec_id
+        description: "Kecamatan ID."
+      - name: kec_name
+        description: "Kecamatan Name."
+      - name: kel_id
+        description: "Kelurahan ID."
+      - name: kel_name
+        description: "Kelurahan Name."
+
+  - name: dim_salesman
+    description: "Dimension table for salesman master data."
+    columns:
+      - name: subdist_id
+        description: "Part of composite primary key. Subdist ID."
+        data_tests:
+          - not_null
+      - name: slsno
+        description: "Part of composite primary key. Salesman number."
+        data_tests:
+          - not_null
+      - name: slsname
+        description: "Salesman name."
+
+  - name: dim_time_op
+    description: "Dimension table for time operations cycle data."
+    columns:
+      - name: year_op
+        description: "Part of composite primary key. Operation Year."
+        data_tests:
+          - not_null
+      - name: week_op
+        description: "Part of composite primary key. Operation Week."
+        data_tests:
+          - not_null
+
+  - name: dim_m_group_channel
+    description: "Dimension table for division group channels master data."
+    columns:
+      - name: div_id
+        description: "Part of composite primary key. Division ID."
+        data_tests:
+          - not_null
+      - name: group_channel_id
+        description: "Part of composite primary key. Group Channel ID."
+        data_tests:
+          - not_null
+      - name: channel_id
+        description: "Part of composite primary key. Channel ID."
+        data_tests:
+          - not_null
+
+  - name: dim_product_snopix
+    description: "Dimension table for logistics snopix product master data."
+    columns:
+      - name: pcode
+        description: "Primary key of product snopix."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_m_group_salesforce
+    description: "Dimension table for Salesforce group mappings."
+    columns:
+      - name: div_id
+        description: "Part of composite primary key. Division ID."
+        data_tests:
+          - not_null
+      - name: gsalesforce_id
+        description: "Part of composite primary key. Salesforce Group ID."
+        data_tests:
+          - not_null
+      - name: salesforce_id
+        description: "Part of composite primary key. Salesforce ID."
+        data_tests:
+          - not_null
+
+  - name: dim_mapping_project
+    description: "Dimension table for project mapping details."
+    columns:
+      - name: distributor_id
+        description: "Part of composite primary key. Distributor ID."
+        data_tests:
+          - not_null
+      - name: spv_id
+        description: "Part of composite primary key. Supervisor ID."
+        data_tests:
+          - not_null
+      - name: sls_id
+        description: "Part of composite primary key. Salesman ID."
+        data_tests:
+          - not_null
+      - name: cust_id
+        description: "Part of composite primary key. Customer ID."
+        data_tests:
+          - not_null
+      - name: status
+        description: "Part of composite primary key. Status."
+        data_tests:
+          - not_null
+
+  - name: dim_project
+    description: "Dimension table for project master data."
+    columns:
+      - name: project_id
+        description: "Primary key. Project ID."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_role
+    description: "Dimension table for role master data."
+    columns:
+      - name: role_id
+        description: "Primary key. Role ID."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_user_role
+    description: "Dimension table for user role mappings."
+    columns:
+      - name: username
+        description: "Part of composite primary key. Username."
+        data_tests:
+          - not_null
+      - name: role_id
+        description: "Part of composite primary key. Role ID."
+        data_tests:
+          - not_null
+
+  - name: dim_sls_termin
+    description: "Dimension table for salesman termination records."
+    columns:
+      - name: sls_id
+        description: "Salesman ID."
+
+  - name: dim_fcustsls_staging
+    description: "Large dimension table for customer salesman staging data."
+    columns:
+      - name: distributor_id
+        description: "Part of composite primary key. Distributor ID."
+        data_tests:
+          - not_null
+      - name: cust_id
+        description: "Part of composite primary key. Customer ID."
+        data_tests:
+          - not_null
+      - name: sls_id
+        description: "Part of composite primary key. Salesman ID."
+        data_tests:
+          - not_null
+      - name: periode
+        description: "Part of composite primary key. Period."
+        data_tests:
+          - not_null
+      - name: tahun
+        description: "Part of composite primary key. Year."
+        data_tests:
+          - not_null
+
+  - name: dim_product
+    description: "Dimension table for products joined from raw_ficom and raw_snopix master data."
+    columns:
+      - name: pcode
+        description: "Primary key. Product Code."
+        data_tests:
+          - unique
+          - not_null
+  
+  - name: dim_target_week
+    description: "Dimension table for weekly targets." 
+    columns:
+      - name: distributor_id
+        description: "Distributor ID."
+        data_tests:
+          - not_null
+      - name: distributor_id_mtx
+        description: "Distributor ID Matrix."
+        data_tests:
+          - not_null
+      - name: tahun
+        description: "Year."
+        data_tests:
+          - not_null
+      - name: week
+        description: "Week."
+        data_tests:
+          - not_null
+      - name: pcode
+        description: "Product Code."
+        data_tests:
+          - not_null
+
+  - name: dim_target_month
+    description: "Dimension table for monthly targets." 
+    columns:
+      - name: distributor_id
+        description: "Distributor ID."
+        data_tests:
+          - not_null
+      - name: distributor_id_mtx
+        description: "Distributor ID Matrix."
+        data_tests:
+          - not_null
+      - name: tahun
+        description: "Year."
+        data_tests:
+          - not_null
+      - name: periode
+        description: "Period."
+        data_tests:
+          - not_null
+      - name: pcode
+        description: "Product Code."
+        data_tests:
+          - not_null
+
+  - name: sales_hierarchy
+    description: "Dimension table for sales hierarchy."
+    columns:
+      - name: sd_id
+        description: "Sales Director ID."
+        data_tests:
+          - not_null
+      - name: nsm_id
+        description: "National Sales Manager ID."
+        data_tests:
+          - not_null
+      - name: grsm_id
+        description: "Group Sales Manager ID."
+        data_tests:
+          - not_null
+      - name: rsm_id
+        description: "Regional Sales Manager ID."
+        data_tests:
+          - not_null
+      - name: ss_id
+        description: "Sales Supervisor ID."
+        data_tests:
+          - not_null
+      - name: distributor_id
+        description: "Distributor ID."
+        data_tests:
+          - not_null
+
+
+  - name: dim_channels
+    description: "Dimension table for channels."
+    columns:
+      - name: channel_id
+        description: "Channel ID."
+        data_tests:
+          - unique
+          - not_null
+
+
+
+

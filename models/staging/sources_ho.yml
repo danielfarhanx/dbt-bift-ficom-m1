@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: raw_ho_mdm
+    description: "HO Master Data loaded by Airbyte"
+    tables:
+      - name: fcshir11
+        description: "Raw provinsi data"
+      - name: fcshir12
+        description: "Raw kabupaten data"
+      - name: fcshir13
+        description: "Raw kecamatan data"
+      - name: fcshir14
+        description: "Raw kelurahan data"
+      - name: fmaster
+        description: "Raw product master data"
+      - name: fregion
+        description: "Raw region data"
+
+  - name: raw_ho_bw
+    description: "HO Business Warehouse Data loaded by Airbyte"
+    tables:
+      - name: fcustmst
+        description: "Raw customer master data"
+      - name: fsls
+        description: "Raw salesman data"

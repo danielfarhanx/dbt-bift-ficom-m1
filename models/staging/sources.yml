@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: raw_ficom
+    description: "Raw data loaded by Airbyte"
+    tables:
+      - name: m_distributor
+        description: "Raw distributor master data"
+      - name: m_distributor_upd_date
+        description: "Raw distributor update date data"
+      - name: m_division
+        description: "Raw division master data"
+      - name: m_emp_class_team
+        description: "Raw employee class team mapping data"
+      - name: m_emp_dist
+        description: "Raw employee distributor mapping data"
+      - name: m_emp_div
+        description: "Raw employee division mapping data"
+      - name: m_emp_mkt_sales
+        description: "Raw employee market sales mapping data"
+      - name: m_employee
+        description: "Raw employee master data"
+      - name: m_salesman_spv
+        description: "Raw salesman supervisor mapping data"
+      - name: m_mapping_project
+        description: "Raw employee mapping project data"
+      - name: m_cycle3
+        description: "Raw cycle data"
+      - name: m_group_channels
+        description: "Raw group channels data"
+      - name: m_mapping_group_salesforce
+        description: "Raw mapping group salesforce data"
+      - name: m_project
+        description: "Raw project master data"
+      - name: m_role
+        description: "Raw role master data"
+      - name: m_user_role
+        description: "Raw user role mapping data"
+      - name: sls_termin
+        description: "Raw salesman termin data"
+      - name: m_fcustsls_staging
+        description: "Raw fcustsls staging data"
+      - name: v_fcustsls_staging_last_2_period
+        description: "Raw last 2 period data view"
+      - name: m_product
+        description: "Raw product master data from ficom"
+      - name: m_mapping_subbrand
+        description: "Raw product subbrand mapping data from ficom"
+      - name: v_salesman_hierarchy
+        description: "Raw salesman hierarhy data from ficom"
+
+

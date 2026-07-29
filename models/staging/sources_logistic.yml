@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw_snopix
+    description: "Logistic Snopix data loaded by Airbyte"
+    tables:
+      - name: m_product
+        description: "Raw product master data from logistic snopix"
+      - name: m_division
+        description: "Raw division master data from logistic snopix"
+      - name: v_target_weekly_bift
+        description: "Raw target weekly data from logistic snopix"
+      - name: v_target_monthly_bift
+        description: "Raw target monthly data from logistic snopix"
