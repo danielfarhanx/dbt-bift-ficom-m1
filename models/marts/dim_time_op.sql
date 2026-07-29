@@ -20,7 +20,7 @@ deduplicated as (
         cdate,
         flag,
         row_number() over (
-            partition by year_op, week_op 
+            partition by year_op, week_op, cdate
             order by _airbyte_extracted_at desc
         ) as rn
 
