@@ -11,7 +11,7 @@
 
 with product as (
 
-    select * from {{ ref('stg_m_product') }}
+    select * from {{ ref('stg_fmaster') }}
 
 ),
 
@@ -37,7 +37,7 @@ joined as (
 
     select
         p.pcode,
-        p.pcode_nm,
+        p.pcodename as pcode_nm,
         ms.div_id,
         ms.div_nm,
         ms.team_id,
